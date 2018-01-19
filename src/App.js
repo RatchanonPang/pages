@@ -9,16 +9,29 @@ import {
 } from 'react-router-dom'
 
 const students =[
-  {id: 34,name: 'Pang', score: 50},
-  {id: 18,name: 'Jason', score: 27},
-  {id: 20,name: 'Tim', score: 22},
+  {id: '34',name: 'Pang', score: 50},
+  {id: '18',name: 'Jason', score: 27},
+  {id: '20',name: 'Tim', score: 22},
 ]
 
 const Home = () => (<div>Home</div>)
 const Students = () => (
   <div>
-    students
+    {
+      _.map(students, s => <StudentLink {...s} key={s.id}/>)
+    }
+    <Route path="/students/:id" component={StudentContainer}/>
   </div>
+)
+
+const StudentContainer = ({match}) => {
+  let s = _.find(students, ['id', match.params.id])
+  return (
+    <StudentLine {...s} key={s.id}/>
+  )
+}
+const StudentLink = ({id, name}) => (
+  <div><Link to={`/students/${id}`}>{name}</Link></div>
 )
 
 const StudentLine = (props) =>(
