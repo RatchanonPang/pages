@@ -34,8 +34,8 @@ const StudentLink = ({id, name}) => (
   <div><Link to={`/students/${id}`}>{name}</Link></div>
 )
 
-const StudentLine = (props) =>(
-  <div>{props.id} {props.name} = {props.score}</div>
+const StudentLine = ({id, name, score}) =>(
+  <div>{id} {name} = {score}</div>
 )
 
 class App extends Component {
